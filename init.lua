@@ -1,1 +1,1 @@
-require("ngabo")
+require("core")
