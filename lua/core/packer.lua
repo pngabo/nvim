@@ -14,23 +14,11 @@ return require('packer').startup(function(use)
   }
 
   use({
-  'rose-pine/neovim', as = 'rose-pine',
-  config = function()
-    require('rose-pine').setup({
-      bold = false,
-      italic = {
-        strings= false,
-        comments = true,
-        operators = false,
-        folds = false
-      },
-      constrast = 'hard',
-      transparent_mode = true
-    })
-
-    vim.cmd('colorscheme rose-pine')
-  end
-})
+    'rose-pine/neovim', as = 'rose-pine',
+    config = function()
+      vim.cmd('colorscheme rose-pine')
+    end
+  })
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
@@ -44,6 +32,9 @@ return require('packer').startup(function(use)
   use('vim-scripts/ReplaceWithRegister')
   -- Commenting with gc
   use('numToStr/Comment.nvim')
+  
+  -- File explorer
+  use('nvim-tree/nvim-tree.lua')
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
