@@ -4,6 +4,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use {
@@ -25,10 +26,8 @@ return require('packer').startup(function(use)
   use('vim-scripts/ReplaceWithRegister')
   -- Commenting with gc
   use('numToStr/Comment.nvim')
-  
-  -- File explorer
-  use('nvim-tree/nvim-tree.lua')
-
+  use { 'fgheng/winbar.nvim' }
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   -- prettier
     use('neovim/nvim-lspconfig')
     use('nvimtools/none-ls.nvim')

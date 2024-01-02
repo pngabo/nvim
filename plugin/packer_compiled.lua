@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/Users/ngabo/.local/share/nvim/site/pack/packer/start/ReplaceWithRegister",
     url = "https://github.com/vim-scripts/ReplaceWithRegister"
   },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/Users/ngabo/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   catppuccin = {
     loaded = true,
     path = "/Users/ngabo/.local/share/nvim/site/pack/packer/start/catppuccin",
@@ -203,6 +208,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/ngabo/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
+  ["winbar.nvim"] = {
+    loaded = true,
+    path = "/Users/ngabo/.local/share/nvim/site/pack/packer/start/winbar.nvim",
+    url = "https://github.com/fgheng/winbar.nvim"
   }
 }
 
