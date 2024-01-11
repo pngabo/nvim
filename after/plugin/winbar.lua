@@ -5,7 +5,7 @@ require('winbar').setup({
     show_symbols = true,
 
     colors = {
-        path = '', -- You can customize colors like #c946fd
+        path = '#FF914F', -- You can customize colors like #c946fd
         file_name = '',
         symbols = '',
     },
