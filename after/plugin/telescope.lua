@@ -1,3 +1,16 @@
+require("telescope").setup({
+  defaults = {
+    sorting_strategy = "ascending",
+    layout_config = {
+      prompt_position = "top",
+      horizontal = {
+        preview_width = 0.5,
+        results_width = 0.8,
+      },
+    },
+  },
+})
+
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.git_files, { desc = "Find Git Files" })
 vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find Files" })

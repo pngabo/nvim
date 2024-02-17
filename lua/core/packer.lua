@@ -14,16 +14,6 @@ return require("packer").startup(function(use)
     requires = { { "nvim-lua/plenary.nvim" } },
   })
   -- use({
-  --   "projekt0n/github-nvim-theme",
-  --   config = function()
-  --     require("github-theme").setup({
-  --       -- ...
-  --     })
-  --
-  --     vim.cmd("colorscheme github_dark_dimmed")
-  --   end,
-  -- })
-  -- use({
   --   "catppuccin/nvim",
   --   as = "catppuccin",
   --   config = function()
@@ -37,7 +27,14 @@ return require("packer").startup(function(use)
       vim.cmd("colorscheme darcula")
     end,
   })
-  -- use("rebelot/kanagawa.nvim")
+  -- use({
+  --   "xiantang/darcula-dark.nvim",
+  --   as = "darcula-dark",
+  --   config = function()
+  --     vim.cmd("colorscheme darcula-dark")
+  --   end,
+  -- })
+
   -- use({
   --   "rose-pine/neovim",
   --   as = "rose-pine",
