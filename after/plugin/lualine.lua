@@ -1,10 +1,9 @@
 require("lualine").setup({
   options = {
-    theme = "darcula",
+    theme = "catppuccin",
     icons_enabled = true,
-    -- component_separators = { left = "", right = "" },
-    component_separators = "│",
-    section_separators = { left = "│", right = "" },
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     refresh = {
       statusline = 1000,
       tabline = 1000,
