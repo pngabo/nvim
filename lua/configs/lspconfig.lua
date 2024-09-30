@@ -5,7 +5,15 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 local util = require "lspconfig/util"
-local servers = { "ts_ls", "rust_analyzer", "html", "cssls", "tailwindcss", "eslint", "gopls", "pyright" }
+local servers = {
+  "ts_ls",
+  "rust_analyzer",
+  "html",
+  "cssls",
+  "tailwindcss",
+  "gopls",
+  "pyright",
+}
 
 local function organize_imports()
   local params = {
@@ -17,6 +25,11 @@ end
 
 local lsp_configs = {
   ts_ls = {
+    init_options = {
+      preferences = {
+        disableSuggestions = true,
+      },
+    },
     commands = {
       OrganizeImports = {
         organize_imports,

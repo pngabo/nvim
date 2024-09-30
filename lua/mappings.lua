@@ -64,7 +64,7 @@ map("n", "<leader>k", "<cmd>lnext<CR>zz")
 map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
--- make file excutable
+-- make file executable
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 map("n", "<leader>sv", "<C-w>v") -- split window vertically
@@ -93,18 +93,24 @@ map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 map("n", "<leader>co", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 -- telescope
-map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
+map(
+  "n",
+  "<leader>fg",
+  "<cmd>Telescope live_grep<CR>",
+  { desc = "Telescope Live grep" }
+)
+map(
+  "n",
+  "<leader>ff",
+  "<cmd>Telescope find_files<cr>",
+  { desc = "Telescope Find files" }
+)
 map(
   "n",
   "<leader>fp",
   "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
   { desc = "Telescope Find all files" }
 )
-
--- dap
-map("n", "<leader>db", "<cmd> DapToggleBreakpoint<CR>", { desc = "Add breakpoint at line" })
-map("n", "<leader>dr", "<cmd> DapContinue<CR>", { desc = "Run or continue the debugger" })
 
 -- Gitsisigns
 map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})

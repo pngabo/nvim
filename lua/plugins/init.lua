@@ -14,13 +14,19 @@ return {
     end,
   },
   {
-    "rcarriga/nvim-dap-ui",
+    "mfussenegger/nvim-dap",
     event = "VeryLazy",
-    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
+      "leoluz/nvim-dap-go",
+    },
     config = function()
       local dap = require "dap"
       local dapui = require "dapui"
       require("dapui").setup()
+      require("dap-go").setup()
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
       end
@@ -30,21 +36,19 @@ return {
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
-    end,
-  },
-  {
-    "mfussenegger/nvim-dap",
-    config = function()
-      require "configs.dap"
-      require("core.utils").load_mappings "dap"
-    end,
-  },
-  {
-    "leoluz/nvim-dap-go",
-    ft = "go",
-    dependencies = "mfussenegger/nvim-dap",
-    config = function(_, opts)
-      require("dap-go").setup(opts)
+
+      vim.keymap.set(
+        "n",
+        "<leader>db",
+        dap.toggle_breakpoint,
+        { desc = "Add breakpoint at line" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>dr",
+        dap.continue,
+        { desc = "Run or continue the debugger" }
+      )
     end,
   },
   {
@@ -106,6 +110,21 @@ return {
     config = function()
       require("nvim-ts-autotag").setup()
     end,
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
   },
   {
     "Exafunction/codeium.nvim",
