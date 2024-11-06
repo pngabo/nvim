@@ -22,5 +22,7 @@ o.expandtab = true
 o.smartindent = true
 o.scrolloff = 8
 o.colorcolumn = "80"
+o.wrap = true
+o.linebreak = true
 
 vim.g.dap_virtual_text = true

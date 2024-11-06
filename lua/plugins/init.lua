@@ -83,13 +83,62 @@ return {
     "hrsh7th/nvim-cmp",
     opts = function()
       local M = require "nvchad.configs.cmp"
+      local cmp = require "cmp" -- Add this line to require 'cmp'
+      -- Insert new source 'crates'
       table.insert(M.sources, { name = "crates" })
+
+      -- Add entry filter to remove 'Text' completion kind
+      -- Configure Enter to confirm selection
+      M.mapping = {
+        ["<CR>"] = cmp.mapping.confirm { select = true }, -- Confirm completion on Enter
+      }
+
+      -- Filter out 'Text' type completions in the entries
+      M.sorting = {
+        comparators = {
+          function(entry1, entry2)
+            -- If entry1 or entry2 is of kind 'Text', deprioritize or remove it
+            local kind1 = entry1:get_kind()
+            local kind2 = entry2:get_kind()
+
+            if kind1 == 1 then -- 1 corresponds to 'Text' kind in nvim-cmp
+              return false
+            elseif kind2 == 1 then
+              return true
+            end
+            -- Otherwise, fallback to default sorting
+            return nil
+          end,
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.locality,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      }
+
       return M
     end,
   },
   {
     "tpope/vim-fugitive",
     event = "BufRead", -- Load plugin when a buffer is read
+  },
+  {
+    "sindrets/diffview.nvim",
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+      "nvim-telescope/telescope.nvim", -- optional
+    },
+    config = true,
   },
   {
     "nvimtools/none-ls.nvim",
@@ -101,8 +150,6 @@ return {
   {
     "windwp/nvim-ts-autotag",
     ft = {
-      "javascript",
-      "javascriptreact",
       "typescript",
       "typescriptreact",
       "html",
@@ -110,21 +157,6 @@ return {
     config = function()
       require("nvim-ts-autotag").setup()
     end,
-  },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    },
   },
   {
     "Exafunction/codeium.nvim",
@@ -135,6 +167,53 @@ return {
     config = function()
       require("codeium").setup {}
     end,
+  },
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- optional for vim.ui.select
+    },
+    config = function()
+      require("flutter-tools").setup {
+        debugger = {
+          -- make these two params true to ennable debug mode
+          enabled = false,
+          run_via_dap = false,
+          register_configurations = function(_)
+            require("dap").adapters.dart = {
+              type = "executable",
+              command = vim.fn.stdpath "data"
+                .. "/mason/bin/dart-debug-adapter",
+              args = { "flutter" },
+            }
+            require("dap").configurations.dart = {
+              {
+                type = "dart",
+                request = "launch",
+                name = "Launch flutter",
+                darkSdkPath = "home/flutter/bin/cache/dart-sdk",
+                flutterSdkPath = "home/workspace/flutter",
+                program = "${workspaceFolder}/lib/main.dart",
+                cwd = "${workspaceFolder}",
+              },
+            }
+            -- uncomment below line if you've launch.json file already in your vscode setup
+            -- require("dap.ext.vscode").load_launchjs()
+          end,
+        },
+        dev_log = {
+          -- toggle it when you run without DAP
+          enabled = false,
+          open_cmd = "tabedit",
+        },
+      }
+    end,
+  },
+  -- for dart syntax hightling
+  {
+    "dart-lang/dart-vim-plugin",
   },
   {
     "williamboman/mason.nvim",
@@ -163,7 +242,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "javascript",
         "typescript",
         "tsx",
         "rust",
