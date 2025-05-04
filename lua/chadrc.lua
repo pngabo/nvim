@@ -10,7 +10,10 @@ M.base46 = {
 
   hl_override = {
     Comment = { italic = true },
-    ["@comment"] = { italic = true }
+    ["@comment"] = { italic = true },
+    Normal = { bg = "#000000" },      -- Sets 'base' color
+    NormalNC = { bg = "#000000" },    -- Sets 'mantle' color
+    NormalFloat = { bg = "#000000" }, -- Sets 'crust' color,
   },
 }
 

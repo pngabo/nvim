@@ -49,20 +49,20 @@ map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- make file executable
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-map("n", "<leader>sv", "<C-w>v") -- split window vertically
-map("n", "<leader>sh", "<C-w>s") -- split window horizontally
-map("n", "<leader>se", "<C-w>=") -- make split window equal width
+map("n", "<leader>sv", "<C-w>v")     -- split window vertically
+map("n", "<leader>sh", "<C-w>s")     -- split window horizontally
+map("n", "<leader>se", "<C-w>=")     -- make split window equal width
 map("n", "<leader>sx", ":close<CR>") -- close current split window
 
 -- switch between windows
-map("n", "<C-h>", "<C-w>h") -- go left
-map("n", "<C-j>", "<C-w>j") -- go down
-map("n", "<C-l>", "<C-w>l") -- go right
+map("n", "<C-h>", "<C-w>h")             -- go left
+map("n", "<C-j>", "<C-w>j")             -- go down
+map("n", "<C-l>", "<C-w>l")             -- go right
 
-map("n", "<leader>to", ":tabnew<CR>") -- open new tab
+map("n", "<leader>to", ":tabnew<CR>")   -- open new tab
 map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
-map("n", "<leader>tn", ":tabn<CR>") -- go to next tab
-map("n", "<leader>tp", ":tabp<CR>") -- go to previous tab
+map("n", "<leader>tn", ":tabn<CR>")     -- go to next tab
+map("n", "<leader>tp", ":tabp<CR>")     -- go to previous tab
 
 --plugin keymaps
 
@@ -75,18 +75,8 @@ map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 map("n", "<leader>co", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 -- telescope
-map(
-  "n",
-  "<leader>fg",
-  "<cmd>Telescope live_grep<CR>",
-  { desc = "Telescope Live grep" }
-)
-map(
-  "n",
-  "<leader>ff",
-  "<cmd>Telescope find_files<cr>",
-  { desc = "Telescope Find files" }
-)
+map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
 map(
   "n",
   "<leader>fp",

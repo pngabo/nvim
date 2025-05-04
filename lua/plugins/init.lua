@@ -99,8 +99,7 @@ return {
   {
     "catgoose/nvim-colorizer.lua",
     event = "BufReadPre",
-    opts = { -- set to setup table
-    },
+    opts = {},
   },
   {
     "rcarriga/nvim-dap-ui",
@@ -131,35 +130,6 @@ return {
     "mfussenegger/nvim-dap",
     config = function()
       require "custom.configs.dap"
-      --      require("core.utils").load_mappings "dap"
-    end,
-  },
-  {
-    "rust-lang/rust.vim",
-    ft = "rust",
-    init = function()
-      vim.g.rustfmt_autosave = 1
-    end,
-  },
-  {
-    "simrat39/rust-tools.nvim",
-    ft = "rust",
-    dependencies = "neovim/nvim-lspconfig",
-    opts = function()
-      return require "configs.rust-tools"
-    end,
-    config = function(_, opts)
-      require("rust-tools").setup(opts)
-    end,
-  },
-  {
-    "saecki/crates.nvim",
-    dependencies = "hrsh7th/nvim-cmp",
-    ft = { "rust", "toml" },
-    config = function(_, opts)
-      local crates = require "crates"
-      crates.setup(opts)
-      crates.show()
     end,
   },
   {
